@@ -17,6 +17,7 @@ services:
   app:
     build: .
     container_name: apisolid
+    restart: always
     ports: 
       - 3333:3333
     volumes:
