@@ -1,10 +1,10 @@
 import { getRepository, Repository } from "typeorm";
 
-import { Category } from "../../entities/Category";
 import {
   ICategoriesRepository,
   ICreateCategoryDTO,
-} from "../ICategoriesRepository";
+} from "../../../repositories/ICategoriesRepository";
+import { Category } from "../entities/Category";
 
 class CategoriesRepository implements ICategoriesRepository {
   private repository: Repository<Category>;
@@ -21,7 +21,7 @@ class CategoriesRepository implements ICategoriesRepository {
   //   return CategoriesRepository.INSTANCE;
   // }
 
-  async create({ name, description }: ICreateCategoryDTO): Promise<void> {
+  async create ({ name, description }: ICreateCategoryDTO): Promise<void> {
     const category = this.repository.create({
       description,
       name,
@@ -30,12 +30,12 @@ class CategoriesRepository implements ICategoriesRepository {
     await this.repository.save(category);
   }
 
-  async list(): Promise<Category[]> {
+  async list (): Promise<Category[]> {
     const categories = await this.repository.find();
     return categories;
   }
   // parametro string: Retorno do tipo Category
-  async findByName(name: string): Promise<Category> {
+  async findByName (name: string): Promise<Category> {
     const category = await this.repository.findOne({ name });
     return category;
   }
