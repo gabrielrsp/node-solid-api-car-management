@@ -1,10 +1,10 @@
 {
+  "password": "ignite",
+  "database": "apisolid",
   "type": "postgres",
   "port": 5432,
   "host": "localhost",
   "username": "docker",
-  "password": "ignite",
-  "database": "apisolid",
   "migrations": [
     "./src/shared/infra/typeorm/migrations/*.ts"
   ],
