@@ -60,7 +60,7 @@ class DevolutionRentalUseCase {
     rental.end_date = this.dateProvider.dateNow();
     rental.total = total;
 
-    await this.rentalsRepository.create(rental); // da pra fazer update com o create
+    await this.rentalsRepository.create(rental); // da pra fazer update com o create se receber o parametro id
 
     // await this.rentalsRepository.updateRental(
     //   rental.id,
