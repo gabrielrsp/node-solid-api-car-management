@@ -52,12 +52,12 @@ class RentalsRepository implements IRentalsRepository {
     return rental;
   }
 
-  async updateRental (id, end_date, total): Promise<void> {
-    this.repository.update(id, {
-      end_date,
-      total,
-    });
-  }
+  // async updateRental (id, end_date, total): Promise<void> {
+  //   this.repository.update(id, {
+  //     end_date,
+  //     total,
+  //   });
+  // }
 
   async findById (id: string): Promise<Rental> {
     const rental = await this.repository.findOne(id);

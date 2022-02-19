@@ -34,21 +34,23 @@ describe("Criar categoria", () => {
   });
 
   it("should not be able to create a new category with an existing category name", async () => {
-    expect(async () => {
-      const category = {
-        name: "Category Test",
-        description: "Category description Test",
-      };
+    const category = {
+      name: "Category Test",
+      description: "Category description Test",
+    };
 
-      await createCategoryUseCase.execute({
+    await createCategoryUseCase.execute({
+      name: category.name,
+      description: category.description,
+    });
+
+    // Aqui é preciso esperar a execução final do EXPECT e não do create
+    // Do jeito normal ele não consegue esperar o resultado do expect e dá erro passando um outro erro qualquer
+    await expect(
+      createCategoryUseCase.execute({
         name: category.name,
         description: category.description,
-      });
-
-      await createCategoryUseCase.execute({
-        name: category.name,
-        description: category.description,
-      });
-    }).rejects.toBeInstanceOf(AppError);
+      })
+    ).rejects.toEqual(new AppError("Category already exists"));
   });
 });

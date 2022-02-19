@@ -62,12 +62,6 @@ class DevolutionRentalUseCase {
 
     await this.rentalsRepository.create(rental); // da pra fazer update com o create se receber o parametro id
 
-    // await this.rentalsRepository.updateRental(
-    //   rental.id,
-    //   rental.end_date,
-    //   rental.total
-    // );
-
     await this.carsRepository.updateAvailable(car.id, true);
 
     return rental;
