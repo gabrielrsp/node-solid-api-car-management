@@ -6,7 +6,7 @@ import { IUsersRepository } from "../IUsersRepository";
 class UsersRepositoryInMemory implements IUsersRepository {
   users: User[] = [];
 
-  async create ({
+  async create({
     driver_license,
     email,
     name,
@@ -24,11 +24,11 @@ class UsersRepositoryInMemory implements IUsersRepository {
     this.users.push(user);
   }
 
-  async findyByEmail (email: string): Promise<User> {
+  async findyByEmail(email: string): Promise<User> {
     return this.users.find((user) => user.email === email);
   }
 
-  async findById (id: string): Promise<User> {
+  async findById(id: string): Promise<User> {
     return this.users.find((user) => user.id === id);
   }
 }
