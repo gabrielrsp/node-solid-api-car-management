@@ -4,7 +4,7 @@ import { inject, injectable } from "tsyringe";
 import { v4 as uuidV4 } from "uuid";
 
 import { IDateProvider } from "@shared/container/providers/DateProvider/IDateProvider";
-import { IMailProvider } from "@shared/container/providers/MailProvider.ts/IMailProvider";
+import { IMailProvider } from "@shared/container/providers/MailProvider/IMailProvider";
 import { AppError } from "@shared/errors/AppError";
 
 @injectable()
@@ -18,9 +18,9 @@ class SendForgotPasswordMailUseCase {
     private dateProvider: IDateProvider,
     @inject("EtherealMailProvider")
     private mailProvider: IMailProvider
-  ) { }
+  ) {}
 
-  async execute (email: string): Promise<void> {
+  async execute(email: string): Promise<void> {
     const user = await this.usersRepository.findyByEmail(email);
 
     if (!user) {

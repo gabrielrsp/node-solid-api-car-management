@@ -6,6 +6,7 @@ import { IMailProvider } from "../IMailProvider";
 @injectable()
 class EtherealMailProvider implements IMailProvider {
   private client: Transporter;
+
   constructor() {
     nodemailer
       .createTestAccount()
@@ -25,7 +26,7 @@ class EtherealMailProvider implements IMailProvider {
       .catch((err) => console.error(err));
   }
 
-  async sendMail (to: string, subject: string, body: string): Promise<void> {
+  async sendMail(to: string, subject: string, body: string): Promise<void> {
     const message = await this.client.sendMail({
       to,
       from: "Apisolid <noreply@apisolid.com.br>",
@@ -33,6 +34,8 @@ class EtherealMailProvider implements IMailProvider {
       text: body,
       html: body,
     });
+
+    console.log(message);
 
     console.log("Message sent: %s", message.messageId);
     console.log("Preview URL: %s", nodemailer.getTestMessageUrl(message));
