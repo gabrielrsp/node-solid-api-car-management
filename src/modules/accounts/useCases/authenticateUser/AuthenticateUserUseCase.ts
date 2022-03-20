@@ -25,15 +25,15 @@ interface IResponse {
 @injectable()
 class AuthenticateUserUseCase {
   constructor(
-    @inject("UsersTokensRepository")
-    private usersTokensRepository: IUsersTokensRepository,
     @inject("UsersRepository")
     private usersRepository: IUsersRepository,
+    @inject("UsersTokensRepository")
+    private usersTokensRepository: IUsersTokensRepository,
     @inject("DayjsDateProvider")
     private dateProvider: IDateProvider
-  ) { }
+  ) {}
 
-  async execute ({ email, password }: IRequest): Promise<IResponse> {
+  async execute({ email, password }: IRequest): Promise<IResponse> {
     // Check if user exists
     const user = await this.usersRepository.findyByEmail(email);
 

@@ -10,13 +10,12 @@ interface IPayload {
   sub: string;
 }
 
-export async function ensureAuthenticated (
+export async function ensureAuthenticated(
   request: Request,
   response: Response,
   next: NextFunction
 ) {
   const authHeader = request.headers.authorization;
-
   const usersTokensRepository = new UsersTokensRepository();
 
   if (!authHeader) {
@@ -31,7 +30,7 @@ export async function ensureAuthenticated (
       auth.secret_refresh_token
     ) as IPayload;
 
-    const user = usersTokensRepository.findByUserIdAndRefreshToken(
+    const user = await usersTokensRepository.findByUserIdAndRefreshToken(
       user_id,
       token
     );
